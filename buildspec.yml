@@ -1,0 +1,18 @@
+version: 2.0
+
+env:
+  variables:
+    PROJECT: project
+    DOTNET_FRAMEWORK: 4.0.0
+
+phases:
+  build:
+    command:
+      - nuget restore
+      # - msbuild $env:PROJECT.csproj /p:TargetFrameWorkVersion=v$env:DOTNET_FRAMEWORK /p:Configuration=Release /p:DeployisAppPath="Default Web Site" /p:PackageAsSingleFile=false /p:OutDir=c:\codebuild\artifacts\ /t:Package
+
+artifacts:
+  files:
+    - '**/**'
+    - .ebextensions/**/*
+  base-directory: 'C:\codebuild\artifacts\Published\'
